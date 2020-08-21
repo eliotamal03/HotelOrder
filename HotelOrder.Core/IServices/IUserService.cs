@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelOrder.Core.IServices
 {
-    interface IUserService
+    public interface IUserService
     {
     }
 }

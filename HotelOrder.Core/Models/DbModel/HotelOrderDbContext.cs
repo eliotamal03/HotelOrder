@@ -49,12 +49,9 @@ namespace HotelOrder.Models
                     .HasColumnName("is_deleted")
                     .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.OrderNumber)
-                    .HasColumnName("order_number")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.OrderStatusId).HasColumnName("order_status_id");
+
+                entity.Property(e => e.OrderStatusId).HasColumnName("order_id");
 
                 entity.Property(e => e.UpdatedTimeStamp)
                     .HasColumnName("updated_time_stamp")
@@ -62,10 +59,10 @@ namespace HotelOrder.Models
                     .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.OrderNumberNavigation)
-                    .WithMany(p => p.OrderTracking)
-                    .HasPrincipalKey(p => p.OrderNumber)
-                    .HasForeignKey(d => d.OrderNumber)
-                    .HasConstraintName("FK_order_tracking_orders");
+                   .WithMany(p => p.OrderTracking)
+                   .HasPrincipalKey(p => p.OrderId)
+                   .HasForeignKey(d => d.OrderId)
+                   .HasConstraintName("FK_order_tracking_id");
 
                 entity.HasOne(d => d.OrderStatus)
                     .WithMany(p => p.OrderTracking)

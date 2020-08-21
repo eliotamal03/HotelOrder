@@ -1,10 +1,12 @@
-﻿using System;
+﻿using HotelOrder.Core.Models.BusinessModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace HotelOrder.Core.IServices
 {
-    interface IDiningService
+    public interface IDiningService
     {
+        List<tables> GetTablesList();
     }
 }

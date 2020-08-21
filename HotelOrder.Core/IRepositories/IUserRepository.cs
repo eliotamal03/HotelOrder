@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelOrder.Core.IRepositories
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
     }
 }

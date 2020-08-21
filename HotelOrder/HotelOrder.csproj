@@ -13,5 +13,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HotelOrder.Core\HotelOrder.Core.csproj" />
+    <ProjectReference Include="..\HotelOrder.Repositories\HotelOrder.Repositories.csproj" />
+    <ProjectReference Include="..\HotelOrder.Services\HotelOrder.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HotelOrder.Models
 {
-    public partial class HotelOrderDbContext : DbContext
+    public partial class HotelOrderModelDbContext : DbContext
     {
-        public HotelOrderDbContext()
+        public HotelOrderModelDbContext()
         {
         }
 
-        public HotelOrderDbContext(DbContextOptions<HotelOrderDbContext> options)
+        public HotelOrderModelDbContext(DbContextOptions<HotelOrderDbContext> options)
             : base(options)
         {
         }
