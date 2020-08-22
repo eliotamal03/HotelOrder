@@ -51,7 +51,7 @@ namespace HotelOrder.Models
 
                 entity.Property(e => e.OrderStatusId).HasColumnName("order_status_id");
 
-                entity.Property(e => e.OrderStatusId).HasColumnName("order_id");
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
 
                 entity.Property(e => e.UpdatedTimeStamp)
                     .HasColumnName("updated_time_stamp")

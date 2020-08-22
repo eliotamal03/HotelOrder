@@ -17,12 +17,12 @@ namespace HotelOrder.Services
 
         public List<menutracking> GetOrderTracking(int table_id, string order_number)
         {
-            throw new NotImplementedException();
+            return _trackingRepository.GetOrderTracking(table_id, order_number);
         }
 
         public void SaveOrderTracking(int table_id, string order_number)
         {
-            throw new NotImplementedException();
+            _trackingRepository.SaveOrderTracking(table_id, order_number);
         }
     }
 }
