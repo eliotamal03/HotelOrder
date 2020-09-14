@@ -1,4 +1,5 @@
 ﻿using HotelOrder.Core.IRepositories;
+using HotelOrder.Core.Models;
 using HotelOrder.Core.Models.BusinessModel;
 using HotelOrder.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace HotelOrder.Repositories
         }
         public List<menucart> GetOrderItems(int table_id, string order_number)
         {
+            helper help = new helper();
             List<menucart> menuLst = new List<menucart>();
             var dbLst = _context.Orders.Select(a => a).Where(a => a.DiningTable.DiningTableId.Equals(table_id)
             && a.OrderNumber.Equals(order_number)).ToList();
@@ -27,6 +29,8 @@ namespace HotelOrder.Repositories
                 {
                     dining_table_id = item.DiningTableId ?? 0,
                     menu_id = item.MenuId ?? 0,
+                    menu_name = help.GetMenuName(item.MenuId ?? 0),
+                    menu_preference = help.GetPreferenceName(help.GetPreferenceId(item.MenuId ?? 0)),
                     quantity = item.Quantity ?? 0,
                     order_id = item.OrderId,
                     order_number = item.OrderNumber,

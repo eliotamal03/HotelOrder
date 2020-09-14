@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace HotelOrder
 {
@@ -32,6 +33,19 @@ namespace HotelOrder
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            var info = new OpenApiInfo()
+            {
+                Version = "v1",
+                Title = "Swagger Hotel Order API",
+                Description = "Swagger Hotel Order API Description",
+                TermsOfService = new Uri("http://www.urtechapps.com"),
+            };
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", info);
+            });
+
             services.AddScoped<IDiningService, DiningService>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IOrderService, OrderService>();
@@ -47,6 +61,12 @@ namespace HotelOrder
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                "Swagger Hotel Order API v1");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

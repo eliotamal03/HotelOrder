@@ -42,16 +42,20 @@ namespace HotelOrder.Controllers
 
         [HttpPost]
         [Route("menu/{order_number}/items")]
-        public bool SaveMenuItems(List<menucart> cartLst, string order_number)
+        public string SaveMenuItems(List<menucart> cartLst, string order_number)
         {
-            bool isSaved = false;
+            string order_num = string.Empty;
             order_number = order_number == "empty" ? "" : order_number;
             List<menucart> orderidLst = _menuService.SaveMenuItems(cartLst, order_number);
             if(orderidLst !=null && orderidLst.Count>0)
             {
-                isSaved = true;
+                foreach(var items in orderidLst)
+                {
+                    order_num = items.order_number;
+                    break;
+                }
             }
-            return isSaved;
+            return order_num;
         }
     }
 }

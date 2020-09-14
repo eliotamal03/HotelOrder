@@ -44,5 +44,13 @@ namespace HotelOrder.Core.Models
             }
         }
 
+        public int GetPreferenceId(int menuId)
+        {
+            using (var _context = new HotelOrderDbContext())
+            {
+                int preferenceId = _context.StaticMenus.Where(a => a.MenuId.Equals(menuId)).Select(a => a.PreferenceId).SingleOrDefault().Value;
+                return preferenceId;
+            }
+        }
     }
 }

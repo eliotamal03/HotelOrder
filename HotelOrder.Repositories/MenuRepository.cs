@@ -95,6 +95,7 @@ namespace HotelOrder.Repositories
                             dborderItem.MenuId = items.menu_id;
                             dborderItem.Quantity = items.quantity;
                             _context.SaveChanges();
+                            cart.order_number = dborderItem.OrderNumber;
                             cart.order_id = dborderItem.OrderId;
                             cart.order_status_id = items.order_status_id;
                             cart.order_tracking_id = items.order_tracking_id > 0 ? items.order_tracking_id : 0;
@@ -128,6 +129,7 @@ namespace HotelOrder.Repositories
                     _context.Orders.Add(menucart);
                     _context.SaveChanges();
                     _context.Entry<Orders>(menucart).State = EntityState.Detached;
+                    cart.order_number = menucart.OrderNumber;
                     cart.order_id = menucart.OrderId;
                     cart.order_status_id = items.order_status_id;
                     cart.order_tracking_id = items.order_tracking_id > 0 ? items.order_tracking_id : 0;
